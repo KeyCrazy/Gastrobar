@@ -163,6 +163,7 @@ CREATE TABLE venta (
     id_cliente INT REFERENCES cliente(id_cliente) ON DELETE SET NULL,
     id_empleado INT NOT NULL REFERENCES empleado(id_empleado),
     fecha_hora TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    metodo_pago VARCHAR(30) NOT NULL DEFAULT 'efectivo' CHECK (metodo_pago IN ('efectivo', 'tarjeta', 'nequi', 'daviplata', 'transferencia')),
     subtotal NUMERIC(12,2) NOT NULL DEFAULT 0 CHECK (subtotal >= 0),
     descuento_total NUMERIC(12,2) NOT NULL DEFAULT 0 CHECK (descuento_total >= 0),
     total NUMERIC(12,2) NOT NULL DEFAULT 0 CHECK (total >= 0)
